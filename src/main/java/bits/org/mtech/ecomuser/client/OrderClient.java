@@ -16,12 +16,12 @@ import java.util.List;
 public class OrderClient {
   public List<Order> getOrdersByUser(Long userId) throws RestClientException, IOException {
 
-    String baseUrl = "http://user:8081/api/orders/user/" + userId;
+    String baseUrl = "http://localhost:8081/orders/" + userId;
     RestTemplate restTemplate = new RestTemplate();
     ResponseEntity<List> response = null;
     try {
-      //response = restTemplate.exchange(baseUrl, HttpMethod.GET, getHeaders(), List.class);
-      List<String> body = new ArrayList<>();
+      response = restTemplate.exchange(baseUrl, HttpMethod.GET, getHeaders(), List.class);
+      /*List<String> body = new ArrayList<>();
       body.add("{" +
               "    orderId: 1," +
               "    orderDate: '12-12-2023'," +
@@ -32,7 +32,7 @@ public class OrderClient {
               "    orderDate: '12-1-2023'," +
               "    orderStatus: 'pending'," +
               "}");
-      response = new ResponseEntity<>(body, HttpStatus.OK);
+      response = new ResponseEntity<>(body, HttpStatus.OK);*/
     } catch (Exception ex) {
       System.out.println(ex);
     }

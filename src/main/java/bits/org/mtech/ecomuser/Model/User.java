@@ -16,9 +16,6 @@ public class User {
   private String userAddress;
   private String userPhoneNumber;
 
-  @Transient
-  private List<Order> orders = new ArrayList<>();
-
   public User() {
   }
 
@@ -60,12 +57,5 @@ public class User {
     this.userPhoneNumber = userPhoneNumber;
   }
 
-  public List<Order> getOrders() {
-    return orders;
-  }
-
-  public void setOrders(List<Order> orders) {
-    this.orders = orders;
-  }
 }
 

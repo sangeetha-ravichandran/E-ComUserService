@@ -1,10 +1,12 @@
 package bits.org.mtech.ecomuser.Service;
 
 import bits.org.mtech.ecomuser.Model.User;
+import bits.org.mtech.ecomuser.Model.UserData;
 import bits.org.mtech.ecomuser.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -29,6 +31,16 @@ public class UserServiceImpl implements UserService{
   @Override
   public Optional<User> getUserById(Long userId) {
     return userRepository.findById(userId);
+  }
+
+  @Override
+  public List<UserData> getAllUserData() {
+    List<UserData> userDataList = new ArrayList<>();
+    this.fetchUserList().forEach(user -> {
+      UserData userData = new UserData(user.getUserId(), user.getUserName());
+      userDataList.add(userData);
+    });
+    return userDataList;
   }
 
   @Override

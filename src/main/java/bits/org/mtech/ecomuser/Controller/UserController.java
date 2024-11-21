@@ -2,6 +2,7 @@ package bits.org.mtech.ecomuser.Controller;
 
 import bits.org.mtech.ecomuser.Model.Order;
 import bits.org.mtech.ecomuser.Model.User;
+import bits.org.mtech.ecomuser.Model.UserData;
 import bits.org.mtech.ecomuser.Service.UserService;
 import bits.org.mtech.ecomuser.client.OrderClient;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,9 +35,9 @@ public class UserController {
 
   // Read operation
   @GetMapping("/users")
-  public List<User> getUsers()
+  public List<UserData> getUsers()
   {
-    return userService.fetchUserList();
+    return userService.getAllUserData();
   }
 
   // Update operation
@@ -49,7 +50,7 @@ public class UserController {
 
   // Delete operation
   @DeleteMapping("/users/{id}")
-  public String deleteDepartmentById(@PathVariable("id") Long userId)
+  public String deleteUserById(@PathVariable("id") Long userId)
   {
     userService.deleteUserById(userId);
     return "Deleted Successfully";
@@ -62,10 +63,6 @@ public class UserController {
     List<Order> orders = null;
     try {
       orders = orderClient.getOrdersByUser(userId);
-      Optional<User> user = userService.getUserById(userId);
-      if (user.isPresent()) {
-        user.get().setOrders(orders);
-      }
     } catch (Exception e) {
       System.out.println("could not get user's orders " + e.getMessage());
     }

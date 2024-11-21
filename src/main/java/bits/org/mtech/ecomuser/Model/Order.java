@@ -1,12 +1,6 @@
 package bits.org.mtech.ecomuser.Model;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-
 public class Order {
-  @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
   private Long orderId;
   private String orderDate;
   private String orderStatus;
